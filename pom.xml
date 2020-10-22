@@ -26,14 +26,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			<!-- <plugin> -->
-			<!-- <groupId>org.codehaus.mojo</groupId> -->
-			<!-- <artifactId>exec-maven-plugin</artifactId> -->
-			<!-- <version>1.6.0</version> -->
-			<!-- <configuration> -->
-			<!-- <mainClass>edu.wallawalla.cs.classes.cptr354.lexer.Oberon</mainClass> -->
-			<!-- </configuration> -->
-			<!-- </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -74,6 +66,7 @@
 						<configuration>
 							<sources>
 								<source>${project.build.directory}/generated-sources/javacc/</source>
+								<source>${project.build.directory}/generated-sources/jjtree/</source>
 							</sources>
 						</configuration>
 					</execution>
