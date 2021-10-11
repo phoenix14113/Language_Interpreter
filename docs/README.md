@@ -2,4 +2,9 @@
 
 # JavaScript Interpreter
 
-## character
+## UnicodeLetter
+[aA-zZ]
+
+## UnicodeDigit
+
+## UnicodePunctuation
