@@ -17,44 +17,45 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 
 ### StringLiteral
 
-#### StringLiteral
+#### StringLiteral :
     StringLiteral :
 
 ### NumericLiterals
 
-#### DecimalLiteral
+#### DecimalLiteral :
     DecimalLiteral :
             DecimalIntegerLiteral . [DecimalDigits]
 
-#### DecimalIntegerLiteral
+#### DecimalIntegerLiteral :
     DecimalIntegerLiteral :
             0
             NonZeroDigit [DecimalDigits]
 
-#### DecimalDigits
+#### DecimalDigits :
     DecimalDigits :
             DecimalDigits
             DecimalDigits DecimalDigit
 
-#### DecimalDigit
+#### DecimalDigit :
     DecimalDigit : one of
             0 1 2 3 4 5 6 7 8 9
 
-#### NonZeroDigit
+#### NonZeroDigit :
     NonZeroDigit : one of
             1 2 3 4 5 6 7 8 9
 
-#### signedInteger
+#### signedInteger :
     signedInteger :
             DecimalDigits
             - DecimalDigits
 
-#### signedFloat
+#### signedFloat :
     signedFloat :
             DecimalLiteral
             - DecimalLiteral
+### Booleans
 
-### BooleanLiterals
+#### BooleanLiterals
     BooleanLiterals :
             true
             false
