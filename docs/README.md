@@ -11,11 +11,10 @@ It might be hard to read at time but for some reason the .md was not accepting b
 #### Literal
     Literal :
             StringLiteral
-            DecimalLiteral
-            BooleanLiterals
+            NumericLiteral
+            BooleanLiteral
 
 ### StringLiteral
-
 #### SourceCharacter :
 This just shows that all of our characters are expressed from Unicode
 ```BNF
@@ -55,7 +54,6 @@ Used for output to the console and prompting input in all three programs.
 
 ### LexicalGrammar
 Defining all the character types so that it is easier to write the BNF's
-
 #### InputElementDiv :
     InputElementDiv :
             WhiteSpace
@@ -124,7 +122,7 @@ This is so we can make our code nice and pretty and readable.
     Token :
                 IdentifierName
                 Punctuator
-                DecimalLiterals
+                NumericLiterals
                 StringLiteral
 #### Identifier :
 Used all over the place for creating variables everywhere needed.
@@ -173,13 +171,19 @@ Used all over the place for creating variables everywhere needed.
 #### NonEscapeCharacter ::
     NonEscapeCharacter :
             SourceCharacter but not one of EscapeCharacter or LineTerminator
-### NumericLiterals
-
+### NumericLiteral
+this is used for the quadratic program just in case things evaluate to decimal numbers.
+```BNF
+    NumericLiteral :
+        DecimalLiteral
+        signedFloat
+        signedInteger
+```
 #### DecimalLiteral :
-this is used for the quadratic program just in case things get strange.
-
+```BNF
     DecimalLiteral :
             DecimalIntegerLiteral [ . DecimalDigits]
+```
 
 #### DecimalIntegerLiteral :
     DecimalIntegerLiteral :
