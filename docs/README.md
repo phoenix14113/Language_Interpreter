@@ -5,11 +5,8 @@
 
 The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>. (see bottom of webpage for condensed syntax)
 
-### Identifiers
-
-### KeyWords
-
-## Literal
+## Literals
+#### Literal
     Literal :
             StringLiteral
             DecimalLiteral
@@ -23,8 +20,8 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 
 #### StringLiteral :
     StringLiteral ::
-            " DoubleStringCharactersopt "
-            ' SingleStringCharactersopt '
+            " [DoubleStringCharacters] "
+            ' [SingleStringCharacters] '
 
 #### DoubleStringCharacters:
     DoubleStringCharacters ::
@@ -58,7 +55,6 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
             LineTerminator
             Comment
             Token
-            DivPunctuator
 
 #### InputElementRegExp :
     InputElementRegExp ::
@@ -66,7 +62,6 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
             LineTerminator
             Comment
             Token
-            RegularExpressionLiteral
 
 #### WhiteSpace :
     WhiteSpace ::
@@ -100,7 +95,7 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 
 #### MultiLineComment :
     MultiLineComment ::
-            /* MultiLineCommentCharsopt */
+            /* [MultiLineCommentChars] */
 
 #### MultiLineNotAsteriskChar :
     MultiLineNotAsteriskChar ::
@@ -108,13 +103,64 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 
 #### SingleLineComment :
     SingleLineComment ::
-            // SingleLineCommentCharsopt
+            // [SingleLineCommentChars]
+#### SingleLineCommentChars :
+    SingleLineCommentChars :
+            SingleLineCommentChar [SingleLineCommentChars]
+#### SingleLineCommentChars :
+    SingleLineCommentChars :
+            SourceCharacter but not LineTerminator
 
+#### Token :
+    Token :
+                IdentifierName
+                Punctuator
+                DecimalLiterals
+                StringLiteral
+#### Identifier :
+    Identifier
+                IdentifierName but not ReserveWord
 #### IdentifierName :
     IdentifierName ::
-            IdentifierStart
-             IdentifierName IdentifierPart
+            [a-zA-Z_][a-zA-Z0-9_]*
 
+#### ReservedWord
+    ReservedWord :
+                KeyWord
+                Punctuator
+                BooleanLiteral
+                NullLiteral
+
+
+#### KeyWord
+    KeyWord : one of  
+        else    var     for     while
+        this    if      delete  prompt
+
+#### Punctuator :
+```BNF
+    Punctuator :  
+        {	}	(	)	[	]
+        .	;	,	<	>	<=
+        >=	==	!=	=	+=	-=
+        +	-	*	%	++	--
+        !	~	&&	||
+```
+#### EscapeSequence :
+    EscapeSequence :
+            CharacterEscapeSequence
+            0 [lookahead ∉ DecimalDigit]
+            UnicodeEscapeSequence
+#### CharacterEscapeSequence :
+    CharacterEscapeSequence ::
+            SingleEscapeCharacter
+            NonEscapeCharacter
+#### SingleEscapeCharacter :
+    SingleEscapeCharacter : one of
+            ' " \ b f n r t v
+#### NonEscapeCharacter ::
+    NonEscapeCharacter :
+            SourceCharacter but not one of EscapeCharacter or LineTerminator
 ### NumericLiterals
 
 #### DecimalLiteral :
@@ -128,16 +174,16 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 
 #### DecimalDigits :
     DecimalDigits :
-            DecimalDigits
+            DecimalDigit
             DecimalDigits DecimalDigit
 
 #### DecimalDigit :
     DecimalDigit : one of
-            0 1 2 3 4 5 6 7 8 9
+            [0-9]
 
 #### NonZeroDigit :
     NonZeroDigit : one of
-            1 2 3 4 5 6 7 8 9
+            [1-9]
 
 #### signedInteger :
     signedInteger :
@@ -150,17 +196,41 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
             - DecimalLiteral
 ### Booleans
 
-#### BooleanLiterals
-    BooleanLiterals :
+#### NullLiteral
+    NullLiteral :
+                null
+#### BooleanLiteral
+    BooleanLiteral :
             true
             false
 
 ### ArrayLiteral
-    //only needs to be integers
+This is for store the integers in to be sorted
+```BNF
+    ArrayLiteral :
+            [[signedInteger]]
+            [ElementList]
+            [ElementList , [signedInteger]]
+```
+#### ElementList
+    ElementList :
+            [signedInteger] AssignmentExpression
+            ElementList , [signedInteger] AssignmentExpression
 
-## 
-### SpecialFunctions 
-
+### SpecialFunctions
+This is an expression but we aren't sure how it will work yet so we aren't allowing it to be accessed. It is used for collecting user input. Let us know if we even need this
+```BNF
+    prompt() :
+            prompt()
+            prompt( StringLiteral )
+            Identifier = prompt()
+            Identifier = prompt( StringLiteral )
+```
+This is an expression but we aren't sure how it will work yet so we aren't allowing it to be accessed. Used for printing to the consol
+```BNF
+    console.log() :
+            console.log( PrimaryExpression )
+```
 ### Expressions 
 
 #### PrimaryExpression :
