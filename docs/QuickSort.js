@@ -58,6 +58,8 @@ const iterativeQuickSort = (arr) => {
 }
 
 // run the functions
+//input
 let arr = [10, 7, 8, 9, 1, 5];
 iterativeQuickSort(arr);
+// outputs [1, 5, 7, 8, 9, 10]
 console.log(arr);
