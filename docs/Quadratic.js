@@ -1,5 +1,5 @@
 // source : https://www.programiz.com/javascript/examples/quadratic-roots
-
+// input: 1 2 1 output: The roots of quadratic equation are 1 and 1. 
 // program to solve quadratic equation
 let root1, root2;
 
