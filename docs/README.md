@@ -206,10 +206,12 @@ The key word var is used her for delacring a new vaiable. This required in both 
     VariableStatement :
             var VariableDeclaration ;
 ```
-
 #### VariableDeclaration :
     VariableDeclaration :
-            AssignmentExpression
+            Identifier [Initialiser]
+#### Initialiser :
+    VariableDeclaration :
+            = AssignmentExpression
 
 #### ExpressionStatement :
     ExpressionStatement :
