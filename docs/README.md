@@ -24,101 +24,121 @@
 ## Expressions 
 
 ### PrimaryExpression :
-    Identifier
-    Literal
-    ArrayLiteral
-    ( Expression )
+    PrimaryExpression :
+            Identifier
+            Literal
+            ArrayLiteral
+            ( Expression )
 
 ### PostfixExpression :
-    NewExpression
-    NewExpression [no LineTerminator here] ++
-    NewExpression [no LineTerminator here] --
+    PostfixExpression :
+            NewExpression
+            NewExpression [no LineTerminator here] ++
+            NewExpression [no LineTerminator here] --
 
 ### UnaryExpression :
-    PostfixExpression
-    delete UnaryExpression
-    typeof UnaryExpression
-    ++ UnaryExpression
-    -- UnaryExpression
+    UnaryExpression :
+            PostfixExpression
+            delete UnaryExpression
+            typeof UnaryExpression
+            ++ UnaryExpression
+            -- UnaryExpression
 
 ### MultiplicativeExpression :
-    UnaryExpression
-    MultiplicativeExpression * UnaryExpression
-    MultiplicativeExpression / UnaryExpression
-    MultiplicativeExpression % UnaryExpression
+    MultiplicativeExpression :
+            UnaryExpression
+            MultiplicativeExpression * UnaryExpression
+            MultiplicativeExpression / UnaryExpression
+            MultiplicativeExpression % UnaryExpression
 
 ### AdditiveExpression :
-    MultiplicativeExpression
-    AdditiveExpression + MultiplicativeExpression
-    AdditiveExpression - MultiplicativeExpression
+    AdditiveExpression :
+            MultiplicativeExpression
+            AdditiveExpression + MultiplicativeExpression
+            AdditiveExpression - MultiplicativeExpression
 
 ### RelationalExpression :
-    AdditiveExpression
-    RelationalExpression < AdditiveExpression
-    RelationalExpression > AdditiveExpression
-    RelationalExpression <= AdditiveExpression
-    RelationalExpression >= AdditiveExpression
+    RelationalExpression :
+            AdditiveExpression
+            RelationalExpression < AdditiveExpression
+            RelationalExpression > AdditiveExpression
+            RelationalExpression <= AdditiveExpression
+            RelationalExpression >= AdditiveExpression
 
 ### EqualityExpression :
-    RelationalExpression
-    EqualityExpression == RelationalExpression
-    EqualityExpression != RelationalExpression
+    EqualityExpression :
+            RelationalExpression
+            EqualityExpression == RelationalExpression
+            EqualityExpression != RelationalExpression
 
 ### LogicalANDExpression :
-    BoonleanExpression
-    LogicalANDExpression && BoonleanExpression
+    LogicalANDExpression :
+            BoonleanExpression
+            LogicalANDExpression && BoonleanExpression
 
 ### LogicalORExpression :
-    BoonleanExpression
-    LogicalORExpression || BoonleanExpression
+    LogicalORExpression :
+            BoonleanExpression
+            LogicalORExpression || BoonleanExpression
 
 ### AssignmentExpression :
-    ConditionalExpression
-    LeftHandSideExpression = AssignmentExpression
-    LeftHandSideExpression AssignmentOperator AssignmentExpression
+    AssignmentExpression :
+            LogicalOrExpression
+            PrimaryExpression = AssignmentExpression
+            PrimaryExpression AssignmentOperator AssignmentExpression
 
-### AssignmentOperator : one of
-    +=
-    -=
+### AssignmentOperator :
+    AssignmentOperator : one of
+            +=
+            -=
 
 ### Expression :
-    AssignmentExpression
-    Expression , AssignmentExpression
+    Expression :
+            AssignmentExpression
+            Expression , AssignmentExpression
 
 ## Statements
 
 ### Statement :
-    Block
-    VariableStatement
-    EmptyStatement
-    ExpressionStatement
-    IfStatement
-    IterationStatement
+    Statement :
+            Block
+            VariableStatement
+            EmptyStatement
+            ExpressionStatement
+            IfStatement
+            IterationStatement
 
 ### Block :
-    { StatementListopt }
+    Block :
+        { StatementList }
 
 ### StatementList :
-    Statement
-    StatementList Statement
+    StatementList :
+            Statement
+            StatementList Statement
 
 ### VariableStatement :
-    var VariableDeclarationList ;
+    VariableStatement :
+            var VariableDeclaration ;
 
-### VariableDeclaration/Initializer :
-    Identifier = AssignmentExpression
+### VariableDeclaration :
+    VariableDeclaration :
+            AssignmentExpression
 
 ### ExpressionStatement :
-    Expression ;
+    ExpressionStatement :
+            Expression ;
 
 ### IfStatement :
-    if ( Expression ) Statement else Statement
-    if ( Expression ) Statement
+    IfStatement :
+            if ( Expression ) Statement else Statement
+            if ( Expression ) Statement
 
 ### IterationStatement :
-    do Statement while ( Expression );
-    while ( Expression ) Statement
-    for ( ExpressionNoInopt ; Expressionopt ; Expressionopt ) Statement
-    for ( var VariableDeclarationListNoIn ; Expressionopt ; Expressionopt ) Statement
-    for ( LeftHandSideExpression in Expression ) Statement
-    for ( var VariableDeclarationNoIn in Expression ) Statement
+    IterationStatement :
+            do Statement while ( Expression );
+            while ( Expression ) Statement
+            for ( ExpressionNoInopt ; Expressionopt ; Expressionopt ) Statement
+            for ( var VariableDeclarationListNoIn ; Expressionopt ; Expressionopt ) Statement
+            for ( LeftHandSideExpression in Expression ) Statement
+            for ( var VariableDeclarationNoIn in Expression ) Statement
