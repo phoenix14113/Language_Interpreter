@@ -1,31 +1,29 @@
 # Language Proposal
 
-# JavaScript Interpreter
+## JavaScript Interpreter
 
 
 The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>.
-## UnicodeLetter
+### UnicodeLetter
     [aA-zZ]
 
-## UnicodeDigit
+### UnicodeDigit
 
-## UnicodePunctuation
+### UnicodePunctuation
 
-## Identifiers
+### Identifiers
 
-### 
+### KeyWords
 
-## KeyWords
+### BooleanLiterals
 
-## BooleanLiterals
-
-## ArrayLiteral
+### ArrayLiteral
     //only needs to be integers
-## SpecialFunctions 
+### SpecialFunctions 
 
-## Expressions 
+### Expressions 
 
-### PrimaryExpression :
+#### PrimaryExpression :
 General definition of what kind of expressions we have.
     PrimaryExpression :
             Identifier
@@ -33,7 +31,7 @@ General definition of what kind of expressions we have.
             ArrayLiteral
             ( Expression )
 
-### PostfixExpression :
+#### PostfixExpression :
 Just required in QuickSort for for loop iteration.
 ```BNF
     PostfixExpression :
@@ -42,7 +40,7 @@ Just required in QuickSort for for loop iteration.
             NewExpression --
 ```
 
-### UnaryExpression :
+#### UnaryExpression :
 not required but could be nice.
 ```BNF
     UnaryExpression :
@@ -53,7 +51,7 @@ not required but could be nice.
             -- UnaryExpression
 ```
 
-### MultiplicativeExpression :
+#### MultiplicativeExpression :
 Required in both Quadratic and QuickSort.
 ```BNF
     MultiplicativeExpression :
@@ -62,7 +60,7 @@ Required in both Quadratic and QuickSort.
             MultiplicativeExpression / UnaryExpression
 ```
 
-### AdditiveExpression :
+#### AdditiveExpression :
 Required in both Quadratic and QuickSort.
 ```BNF
     AdditiveExpression :
@@ -71,7 +69,7 @@ Required in both Quadratic and QuickSort.
             AdditiveExpression - MultiplicativeExpression
 ```
 
-### RelationalExpression :
+#### RelationalExpression :
 Required in both Quadratic and QuickSort.
 ```BNF
     RelationalExpression :
@@ -82,7 +80,7 @@ Required in both Quadratic and QuickSort.
             RelationalExpression >= AdditiveExpression
 ```
 
-### EqualityExpression :
+#### EqualityExpression :
 Required in both Quadratic and QuickSort.
 ```BNF
     EqualityExpression :
@@ -91,7 +89,7 @@ Required in both Quadratic and QuickSort.
             EqualityExpression != RelationalExpression
 ```
 
-### LogicalANDExpression :
+#### LogicalANDExpression :
 Nothing obvious requires this but we have a sneaking suspicion we might need it for something.
 ```BNF
     LogicalANDExpression :
@@ -99,7 +97,7 @@ Nothing obvious requires this but we have a sneaking suspicion we might need it 
             LogicalANDExpression && BoonleanExpression
 ```
 
-### LogicalORExpression :
+#### LogicalORExpression :
 Nothing obvious requires this but we have a sneaking suspicion we might need it for something.
 ```BNF
     LogicalORExpression :
@@ -107,7 +105,7 @@ Nothing obvious requires this but we have a sneaking suspicion we might need it 
             LogicalORExpression || BoonleanExpression
 ```
 
-### AssignmentExpression :
+#### AssignmentExpression :
 Needed to create variable in both QuickSort and Quadratic.
 ```BNF
     AssignmentExpression :
@@ -116,19 +114,19 @@ Needed to create variable in both QuickSort and Quadratic.
             PrimaryExpression AssignmentOperator AssignmentExpression
 ```
 
-### AssignmentOperator :
+#### AssignmentOperator :
     AssignmentOperator : one of
             +=
             -=
 
-### Expression :
+#### Expression :
     Expression :
             AssignmentExpression
             Expression , AssignmentExpression
 
-## Statements
+### Statements
 
-### Statement :
+#### Statement :
 General declaration of what different kind of statements there are.
 ```BNF
     Statement :
@@ -140,35 +138,35 @@ General declaration of what different kind of statements there are.
             IterationStatement
 ```
 
-### Block :
+#### Block :
 Needed every time a block is made.
 ```BNF
     Block :
         { StatementList }
 ```
 
-### StatementList :
+#### StatementList :
 Needed every time there is more than one line of code.
     StatementList :
             Statement
             StatementList Statement
 
-### VariableStatement :
+#### VariableStatement :
 The key word var is used her for delacring a new vaiable. This required in both QuickSort and Quadratic.
 ```BNF
     VariableStatement :
             var VariableDeclaration ;
 ```
 
-### VariableDeclaration :
+#### VariableDeclaration :
     VariableDeclaration :
             AssignmentExpression
 
-### ExpressionStatement :
+#### ExpressionStatement :
     ExpressionStatement :
             Expression ;
 
-### IfStatement :
+#### IfStatement :
 If statements can be done with the if statement and an if else block can be made with the nearest else to an if. QuickSort and Quadratic need this.
 ```BNF
     IfStatement :
@@ -176,7 +174,7 @@ If statements can be done with the if statement and an if else block can be made
             if ( Expression ) Statement
 ```
 
-### IterationStatement :
+#### IterationStatement :
 Iteration can be done with the key words while or for. The QuickSort functionality requires these.
 ```BNF
     IterationStatement :
