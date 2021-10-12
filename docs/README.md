@@ -240,20 +240,6 @@ This is for store the integers in to be sorted
             [signedInteger] AssignmentExpression
             ElementList , [signedInteger] AssignmentExpression
 
-### SpecialFunctions
-This is an expression but we aren't sure how it will work yet so we aren't allowing it to be accessed. It is used for collecting user input. Let us know if we even need this
-```BNF
-    prompt() :
-            prompt()
-            prompt( StringLiteral )
-            Identifier = prompt()
-            Identifier = prompt( StringLiteral )
-```
-This is an expression but we aren't sure how it will work yet so we aren't allowing it to be accessed. Used for printing to the consol
-```BNF
-    console.log() :
-            console.log( PrimaryExpression )
-```
 ### Expressions 
 
 #### PrimaryExpression :
@@ -420,3 +406,13 @@ Iteration can be done with the key words while or for. The QuickSort functionali
             while ( Expression ) Statement
             for ( Expression ; Expression ; Expression ) Statement
 ```
+
+### SpecialFunctions
+These are functions we will need to gather input, output to the console, and sort an array.
+
+* arr[index] - allows the access of independant array indecise for sorting and printing.
+* arr.length - allows calculation of how long the array is for conditional use.
+* arr.push() - adds an entry at the beginning of an array.
+* arr.shift() - takes an entry off the back of the array, saves it, then deletes it from the array.
+* console.log() - allows things to be print to the console.
+* prompt() - allows a string to be printed and then the retrieval of data from a user.
