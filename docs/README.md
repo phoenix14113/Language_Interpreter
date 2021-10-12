@@ -17,6 +17,10 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 
 ### StringLiteral
 
+#### SourceCharacter :
+    SourceCharacter ::
+            any Unicode code unit
+
 #### StringLiteral :
     StringLiteral ::
             " DoubleStringCharactersopt "
@@ -35,6 +39,81 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
             SourceCharacter but not one of " or \ or LineTerminator
             \ EscapeSequence
             LineContinuation
+
+#### SingleStringCharacter :
+    SingleStringCharacter ::
+            SourceCharacter but not one of ' or \ or LineTerminator
+            \ EscapeSequence
+            LineContinuation
+
+#### LineContinuation :
+    LineContinuation ::
+            \ LineTerminatorSequence
+
+### LexicalGrammar
+
+#### InputElementDiv :
+    InputElementDiv ::
+            WhiteSpace
+            LineTerminator
+            Comment
+            Token
+            DivPunctuator
+
+#### InputElementRegExp :
+    InputElementRegExp ::
+            WhiteSpace
+            LineTerminator
+            Comment
+            Token
+            RegularExpressionLiteral
+
+#### WhiteSpace :
+    WhiteSpace ::
+            <TAB>
+            <VT>
+            <FF>
+            <SP>
+            <NBSP>
+            <BOM>
+            <USP>
+
+#### LineTerminator :
+    LineTerminator ::
+            <LF>
+            <CR>
+            <LS>
+            <PS>
+
+#### LineTerminatorSequence :
+    LineTerminatorSequence ::
+            <LF>
+            <CR> [lookahead ∉ <LF> ]
+            <LS>
+            <PS>
+            <CR> <LF>
+
+#### Comment :
+    Comment ::
+            MultiLineComment
+            SingleLineComment
+
+#### MultiLineComment :
+    MultiLineComment ::
+            /* MultiLineCommentCharsopt */
+
+#### MultiLineNotAsteriskChar :
+    MultiLineNotAsteriskChar ::
+            SourceCharacter but not one of / or *
+
+#### SingleLineComment :
+    SingleLineComment ::
+            // SingleLineCommentCharsopt
+
+#### IdentifierName :
+    IdentifierName ::
+            IdentifierStart
+             IdentifierName IdentifierPart
 
 ### NumericLiterals
 
