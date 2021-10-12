@@ -2,6 +2,8 @@
 
 # JavaScript Interpreter
 
+
+The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>.
 ## UnicodeLetter
     [aA-zZ]
 
