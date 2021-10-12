@@ -147,9 +147,11 @@ Needed every time a block is made.
 
 #### StatementList :
 Needed every time there is more than one line of code.
+```BNF
     StatementList :
             Statement
             StatementList Statement
+```
 
 #### VariableStatement :
 The key word var is used her for delacring a new vaiable. This required in both QuickSort and Quadratic.
