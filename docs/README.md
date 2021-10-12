@@ -5,6 +5,8 @@
 
 The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>. (see bottom of webpage for condensed syntax)
 
+It might be hard to read at time but for some reason the .md was not accepting bolding or itelics.
+
 ## Literals
 #### Literal
     Literal :
@@ -15,56 +17,61 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 ### StringLiteral
 
 #### SourceCharacter :
-    SourceCharacter ::
+This just shows that all of our characters are expressed from Unicode
+```BNF
+    SourceCharacter :
             any Unicode code unit
-
+```
 #### StringLiteral :
-    StringLiteral ::
+Used for output to the console and prompting input in all three programs.
+```BNF
+    StringLiteral :
             " [DoubleStringCharacters] "
             ' [SingleStringCharacters] '
-
+```
 #### DoubleStringCharacters:
-    DoubleStringCharacters ::
+    DoubleStringCharacters :
             DoubleStringCharacter [DoubleStringCharacters]
 
 #### SingleStringCharacters :   
-    SingleStringCharacters ::
+    SingleStringCharacters :
             SingleStringCharacter [SingleStringCharacters]
 
 #### DoubleStringCharacter :
-    DoubleStringCharacter ::
+    DoubleStringCharacter :
             SourceCharacter but not one of " or \ or LineTerminator
             \ EscapeSequence
             LineContinuation
 
 #### SingleStringCharacter :
-    SingleStringCharacter ::
+    SingleStringCharacter :
             SourceCharacter but not one of ' or \ or LineTerminator
             \ EscapeSequence
             LineContinuation
 
 #### LineContinuation :
-    LineContinuation ::
+    LineContinuation :
             \ LineTerminatorSequence
 
 ### LexicalGrammar
+Defining all the character types so that it is easier to write the BNF's
 
 #### InputElementDiv :
-    InputElementDiv ::
+    InputElementDiv :
             WhiteSpace
             LineTerminator
             Comment
             Token
 
 #### InputElementRegExp :
-    InputElementRegExp ::
+    InputElementRegExp :
             WhiteSpace
             LineTerminator
             Comment
             Token
 
 #### WhiteSpace :
-    WhiteSpace ::
+    WhiteSpace :
             <TAB>
             <VT>
             <FF>
@@ -74,14 +81,14 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
             <USP>
 
 #### LineTerminator :
-    LineTerminator ::
+    LineTerminator :
             <LF>
             <CR>
             <LS>
             <PS>
 
 #### LineTerminatorSequence :
-    LineTerminatorSequence ::
+    LineTerminatorSequence :
             <LF>
             <CR> [lookahead ∉ <LF> ]
             <LS>
@@ -89,12 +96,14 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
             <CR> <LF>
 
 #### Comment :
-    Comment ::
+This is so we can make our code nice and pretty and readable.
+```BNF
+    Comment :
             MultiLineComment
             SingleLineComment
-
+```
 #### MultiLineComment :
-    MultiLineComment ::
+    MultiLineComment :
             /* [MultiLineCommentChars] */
 
 #### MultiLineNotAsteriskChar :
@@ -118,8 +127,11 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
                 DecimalLiterals
                 StringLiteral
 #### Identifier :
+Used all over the place for creating variables everywhere needed.
+```BNF
     Identifier
                 IdentifierName but not ReserveWord
+```
 #### IdentifierName :
     IdentifierName ::
             [a-zA-Z_][a-zA-Z0-9_]*
@@ -164,8 +176,10 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 ### NumericLiterals
 
 #### DecimalLiteral :
+this is used for the quadratic program just in case things get strange.
+
     DecimalLiteral :
-            DecimalIntegerLiteral . [DecimalDigits]
+            DecimalIntegerLiteral [ . DecimalDigits]
 
 #### DecimalIntegerLiteral :
     DecimalIntegerLiteral :
@@ -197,13 +211,18 @@ The language definition can be found at <https://262.ecma-international.org/5.1/
 ### Booleans
 
 #### NullLiteral
+thought this might be useful
+```BNF
     NullLiteral :
-                null
+            null
+```
 #### BooleanLiteral
+Used for cases and while/for loops in Quadratic and QuickSort programs.
+```BNF
     BooleanLiteral :
             true
             false
-
+```
 ### ArrayLiteral
 This is for store the integers in to be sorted
 ```BNF
