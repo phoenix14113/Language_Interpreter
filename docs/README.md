@@ -4,32 +4,78 @@
 
 
 The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>.
-### UnicodeLetter
-    [aA-zZ]
-
-### UnicodeDigit
-
-### UnicodePunctuation
 
 ### Identifiers
 
 ### KeyWords
 
+## Literal
+    Literal :
+            StringLiteral
+            DecimalLiteral
+            BooleanLiterals
+
+### StringLiteral
+
+#### StringLiteral
+    StringLiteral :
+
+### NumericLiterals
+
+#### DecimalLiteral
+    DecimalLiteral :
+            DecimalIntegerLiteral . [DecimalDigits]
+
+#### DecimalIntegerLiteral
+    DecimalIntegerLiteral :
+            0
+            NonZeroDigit [DecimalDigits]
+
+#### DecimalDigits
+    DecimalDigits :
+            DecimalDigits
+            DecimalDigits DecimalDigit
+
+#### DecimalDigit
+    DecimalDigit : one of
+            0 1 2 3 4 5 6 7 8 9
+
+#### NonZeroDigit
+    NonZeroDigit : one of
+            1 2 3 4 5 6 7 8 9
+
+#### signedInteger
+    signedInteger :
+            DecimalDigits
+            - DecimalDigits
+
+#### signedFloat
+    signedFloat :
+            DecimalLiteral
+            - DecimalLiteral
+
 ### BooleanLiterals
+    BooleanLiterals :
+            true
+            false
 
 ### ArrayLiteral
     //only needs to be integers
+
+## 
 ### SpecialFunctions 
 
 ### Expressions 
 
 #### PrimaryExpression :
 General definition of what kind of expressions we have.
+```BNF
     PrimaryExpression :
             Identifier
             Literal
             ArrayLiteral
             ( Expression )
+```
 
 #### PostfixExpression :
 Just required in QuickSort for for loop iteration.
