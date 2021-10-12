@@ -18,7 +18,7 @@
 ## BooleanLiterals
 
 ## ArrayLiteral
-
+    //only needs to be integers
 ## SpecialFunctions 
 
 ## Expressions 
@@ -33,8 +33,8 @@
 ### PostfixExpression :
     PostfixExpression :
             NewExpression
-            NewExpression [no LineTerminator here] ++
-            NewExpression [no LineTerminator here] --
+            NewExpression ++
+            NewExpression --
 
 ### UnaryExpression :
     UnaryExpression :
@@ -118,6 +118,7 @@
             StatementList Statement
 
 ### VariableStatement :
+The key word var is used her for delacring a new vaiable. This required in both QuickSort and Quadratic.
     VariableStatement :
             var VariableDeclaration ;
 
@@ -130,15 +131,13 @@
             Expression ;
 
 ### IfStatement :
+If statements can be done with the if statement and an if else block can be made with the nearest else to an if. QuickSort and Quadratic need this.
     IfStatement :
             if ( Expression ) Statement else Statement
             if ( Expression ) Statement
 
 ### IterationStatement :
+Iteration can be done with the key words while or for. The QuickSort functionality requires these.
     IterationStatement :
-            do Statement while ( Expression );
             while ( Expression ) Statement
-            for ( ExpressionNoInopt ; Expressionopt ; Expressionopt ) Statement
-            for ( var VariableDeclarationListNoIn ; Expressionopt ; Expressionopt ) Statement
-            for ( LeftHandSideExpression in Expression ) Statement
-            for ( var VariableDeclarationNoIn in Expression ) Statement
+            for ( Expression ; Expression ; Expression ) Statement
