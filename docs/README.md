@@ -3,7 +3,7 @@
 ## JavaScript Interpreter
 
 
-The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>.
+The language definition can be found at <https://262.ecma-international.org/5.1/#sec-12.5>. (see bottom of webpage for condensed syntax)
 
 ### Identifiers
 
