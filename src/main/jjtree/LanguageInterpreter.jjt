@@ -93,7 +93,10 @@ void additiveExpression() :
 {}
 {
 	unaryExpression()
-	(<PLUS> unaryExpression()#AddExpr(2))*
+	(
+        <PLUS> unaryExpression()#AddExpr(2)
+        | <MINUS> unaryExpression()#Subtraction(2)
+    )*
 }
 
 void unaryExpression() :

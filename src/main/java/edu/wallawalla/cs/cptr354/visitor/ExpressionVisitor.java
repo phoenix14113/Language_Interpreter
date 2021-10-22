@@ -39,6 +39,13 @@ public class ExpressionVisitor implements ExpressionParserVisitor {
 		stack.addFirst(Integer.valueOf(arg2.intValue() + arg1.intValue()));
 		return null;
 	}
+    public Object visit(ASTSubtraction node, Object data) {
+		node.childrenAccept(this, data);
+		Integer arg1 = pop();
+		Integer arg2 = pop();
+		stack.addFirst(Integer.valueOf(arg2.intValue() - arg1.intValue()));
+		return null;
+	}
 
 	public Object visit(ASTNegateExpr node, Object data) {
 		node.childrenAccept(this, data);

@@ -18,5 +18,11 @@ public class ArthmeticTests extends AbstractTests {
 		String result = runInterpreter(inputString);
 		assertEquals("11" + System.lineSeparator(), result);
 	}
+    @Test
+	public void testSubtractionVariable() throws Exception {
+		String inputString = "a = 5 - 6; PRINT a;" + System.lineSeparator();
+		String result = runInterpreter(inputString);
+		assertEquals("-1" + System.lineSeparator(), result);
+	}
 
 }
