@@ -13,11 +13,10 @@ package edu.wallawalla.cs.cptr354.visitor;
 public class ExpressionParser {
 
   public static void main(String args[]) throws Exception {
-    //ExpressionParser parser = new ExpressionParser(new java.io.FileReader(args[0]));
     ExpressionParser parser = new ExpressionParser(System.in);
     ASTstart expr=parser.start();
     ExpressionVisitor v=new ExpressionVisitor();
-    System.out.println(expr.jjtAccept(v,null));
+    expr.jjtAccept(v,null);
   }
 }
 
@@ -35,10 +34,10 @@ TOKEN:
 {
 		<NUMBER: (["0"-"9"])+ >
 	|	<VARIABLE: (["a"-"z"])+>	
-	|	<DIVIDE: "/">
-	|	<MULTIPLY: "*">
 	|	<PLUS: "+">
 	|	<MINUS: "-">
+	|	<DEBUG: "DEBUG">
+	|	<PRINT: "PRINT">
 }
 
 ASTstart start() #start:{}
@@ -47,10 +46,32 @@ ASTstart start() #start:{}
   { return jjtThis; }
 }
 
-void statement() #Statement:
+void statement():
 {}
 {
-	identifier()"="expression()";"
+	(
+		assignmentStatement()
+		| debug()
+		| print()
+	)";"
+}
+
+void assignmentStatement() #Statement:
+{}
+{
+  identifier()"="expression()
+}
+
+void debug():
+{}
+{
+	<DEBUG>#DebugExpr
+}
+
+void print():
+{}
+{
+	<PRINT> expression()#PrintExpr(1)
 }
 
 void identifier() :
@@ -71,21 +92,10 @@ void expression():
 void additiveExpression() :
 {}
 {
-	multiplicativeExpression()
-	(<PLUS> multiplicativeExpression()#AddExpr(2)
-	 | <MINUS> multiplicativeExpression()#SubractExpr(2)
-	)*
+	unaryExpression()
+	(<PLUS> unaryExpression()#AddExpr(2))*
 }
 
-void multiplicativeExpression() :
-{}
-{
-	unaryExpression()
-	(
-	 <MULTIPLY> unaryExpression()#MultiplyExpr(2)
-	 |<DIVIDE> unaryExpression()#DivideExpr(2)
-	)*
-}
 void unaryExpression() :
 {}
 {
@@ -94,8 +104,7 @@ void unaryExpression() :
 }
 
 void numberExpression() :
-{
-}
+{}
 {
 	<NUMBER>
 	{ 

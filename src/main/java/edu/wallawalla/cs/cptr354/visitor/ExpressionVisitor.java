@@ -5,8 +5,8 @@ import java.util.LinkedList;
 
 public class ExpressionVisitor implements ExpressionParserVisitor {
 
-	private LinkedList stack = new LinkedList();
-	private HashMap symbolTable = new HashMap();
+	private LinkedList<Object> stack = new LinkedList<Object>();
+	private HashMap<Object, Object> symbolTable = new HashMap<Object, Object>();
 
 	public Object visit(SimpleNode node, Object data) {
 		node.childrenAccept(this, data);
@@ -18,42 +18,32 @@ public class ExpressionVisitor implements ExpressionParserVisitor {
 		return symbolTable;
 	}
 
+
+	public Object visit(ASTDebugExpr node, Object data) {
+		node.childrenAccept(this, data);
+		System.out.println(symbolTable);
+		return null;
+	}
+
+	public Object visit(ASTPrintExpr node, Object data) {
+		node.childrenAccept(this, data);
+		Integer arg1 = pop();
+		System.out.println(arg1);
+		return null;
+	}
+
 	public Object visit(ASTAddExpr node, Object data) {
 		node.childrenAccept(this, data);
 		Integer arg1 = pop();
 		Integer arg2 = pop();
-		stack.addFirst(new Integer(arg2.intValue() + arg1.intValue()));
-		return null;
-	}
-
-	public Object visit(ASTSubractExpr node, Object data) {
-		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(new Integer(arg2.intValue() - arg1.intValue()));
-		return null;
-	}
-
-	public Object visit(ASTMultiplyExpr node, Object data) {
-		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(new Integer(arg2.intValue() * arg1.intValue()));
-		return null;
-	}
-
-	public Object visit(ASTDivideExpr node, Object data) {
-		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(new Integer(arg2.intValue() / arg1.intValue()));
+		stack.addFirst(Integer.valueOf(arg2.intValue() + arg1.intValue()));
 		return null;
 	}
 
 	public Object visit(ASTNegateExpr node, Object data) {
 		node.childrenAccept(this, data);
 		Integer arg1 = pop();
-		stack.addFirst(new Integer(arg1.intValue() * -1));
+		stack.addFirst(Integer.valueOf(arg1.intValue() * -1));
 		return null;
 	}
 
