@@ -36,6 +36,11 @@ public class ArthmeticTests extends AbstractTests {
 		String result = runInterpreter(inputString);
 		assertEquals("2.0" + System.lineSeparator(), result);
 	}
+	public void testSqrtVariable() throws Exception {
+		String inputString = "var a = sqrt(9.0); console.log(a);" + System.lineSeparator();
+		String result = runInterpreter(inputString);
+		assertEquals("3.0" + System.lineSeparator(), result);
+	}
 
 
 }
