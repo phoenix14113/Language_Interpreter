@@ -63,17 +63,9 @@ void statement():
 void VariableStatement():
 {}
 {
-	<ASSIGN> Variabledeclaration()
+	<ASSIGN> identifier() (intitaliser())*
 }
 
-void Variabledeclaration():
-{}
-{
-	identifier()
-    (
-        intitaliser()
-    )*
-}
 
 void intitaliser() #Statement:
 {}
@@ -138,7 +130,14 @@ void unaryExpression() :
 void sqrtExpression() :
 {}
 {
-	"sqrt("numberExpression()")"#sqrtExpr(1)
+	"sqrt("paraExpression()")"#sqrtExpr(1)
+    | paraExpression()
+}
+
+void paraExpression() :
+{}
+{
+	"("expression()")"
     | numberExpression()
 }
 

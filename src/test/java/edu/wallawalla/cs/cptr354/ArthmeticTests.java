@@ -41,6 +41,10 @@ public class ArthmeticTests extends AbstractTests {
 		String result = runInterpreter(inputString);
 		assertEquals("3.0" + System.lineSeparator(), result);
 	}
-
+    public void QuadraticTest() throws Exception {
+		String inputString = "var a = 1.0; var b = 1.0; var c = 1.0; b = 2.0; var solutions = (-b + sqrt(b * b - 4.0 * a * c)) / (2.0 * a); console.log(solutions);" + System.lineSeparator();
+		String result = runInterpreter(inputString);
+		assertEquals("1.0" + System.lineSeparator(), result);
+	}
 
 }
