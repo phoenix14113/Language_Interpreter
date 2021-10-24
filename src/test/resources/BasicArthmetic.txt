@@ -1,5 +1,5 @@
-a = 5 + 6;
-PRINT a;
+var a = 5 + 6;
+console.log(a);
 
-b = -6;
-PRINT b;
+var b = -6;
+console.log(b);

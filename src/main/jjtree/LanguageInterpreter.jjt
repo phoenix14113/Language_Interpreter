@@ -33,11 +33,14 @@ SKIP :
 TOKEN:
 {
 		<NUMBER: (["0"-"9"])+ >
+    |   <ASSIGN: "var" >
+	|	<DEBUG: "debugger">
 	|	<VARIABLE: (["a"-"z"])+>	
 	|	<PLUS: "+">
 	|	<MINUS: "-">
-	|	<DEBUG: "DEBUG">
-	|	<PRINT: "PRINT">
+    |   <TIMES: "*">
+    |   <DIVIDE: "/">
+
 }
 
 ASTstart start() #start:{}
@@ -50,16 +53,31 @@ void statement():
 {}
 {
 	(
-		assignmentStatement()
+		VariableStatement()
 		| debug()
 		| print()
 	)";"
 }
 
-void assignmentStatement() #Statement:
+void VariableStatement():
 {}
 {
-  identifier()"="expression()
+	<ASSIGN> Variabledeclaration()
+}
+
+void Variabledeclaration():
+{}
+{
+	identifier()
+    (
+        intitaliser()
+    )*
+}
+
+void intitaliser() #Statement:
+{}
+{
+  "="expression()
 }
 
 void debug():
@@ -71,7 +89,7 @@ void debug():
 void print():
 {}
 {
-	<PRINT> expression()#PrintExpr(1)
+	"console.log("expression()")"#PrintExpr(1)
 }
 
 void identifier() :
@@ -92,19 +110,30 @@ void expression():
 void additiveExpression() :
 {}
 {
+	multiplicativeExpression()
+	(
+        <PLUS> multiplicativeExpression()#AddExpr(2)
+        | <MINUS> multiplicativeExpression()#Subtraction(2)
+    )*
+}
+
+void multiplicativeExpression() :
+{}
+{
 	unaryExpression()
 	(
-        <PLUS> unaryExpression()#AddExpr(2)
-        | <MINUS> unaryExpression()#Subtraction(2)
+        <TIMES> unaryExpression()#TimesExpr(2)
+        | <DIVIDE> unaryExpression()#DivideExpr(2)
     )*
 }
 
 void unaryExpression() :
 {}
 {
-	<MINUS> numberExpression()#NegateExpr(1)|
-	numberExpression()
+	<MINUS> numberExpression()#NegateExpr(1)
+    | numberExpression()
 }
+
 
 void numberExpression() :
 {}
