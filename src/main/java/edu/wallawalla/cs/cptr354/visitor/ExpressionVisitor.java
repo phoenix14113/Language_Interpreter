@@ -27,44 +27,50 @@ public class ExpressionVisitor implements ExpressionParserVisitor {
 
 	public Object visit(ASTPrintExpr node, Object data) {
 		node.childrenAccept(this, data);
-		Integer arg1 = pop();
+		Double arg1 = pop();
 		System.out.println(arg1);
 		return null;
 	}
 
 	public Object visit(ASTAddExpr node, Object data) {
 		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(Integer.valueOf(arg2.intValue() + arg1.intValue()));
+		Double arg1 = pop();
+		Double arg2 = pop();
+		stack.addFirst(Double.valueOf(arg2.doubleValue() + arg1.doubleValue()));
 		return null;
 	}
     public Object visit(ASTSubtraction node, Object data) {
 		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(Integer.valueOf(arg2.intValue() - arg1.intValue()));
+		Double arg1 = pop();
+		Double arg2 = pop();
+		stack.addFirst(Double.valueOf(arg2.doubleValue() - arg1.doubleValue()));
 		return null;
 	}
 
     public Object visit(ASTTimesExpr node, Object data) {
 		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(Integer.valueOf(arg2.intValue() * arg1.intValue()));
+		Double arg1 = pop();
+		Double arg2 = pop();
+		stack.addFirst(Double.valueOf(arg2.doubleValue() * arg1.doubleValue()));
 		return null;
 	}
     public Object visit(ASTDivideExpr node, Object data) {
 		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		Integer arg2 = pop();
-		stack.addFirst(Integer.valueOf(arg2.intValue() / arg1.intValue()));
+		Double arg1 = pop();
+		Double arg2 = pop();
+		stack.addFirst(Double.valueOf(arg2.doubleValue() / arg1.doubleValue()));
 		return null;
 	}
 	public Object visit(ASTNegateExpr node, Object data) {
 		node.childrenAccept(this, data);
-		Integer arg1 = pop();
-		stack.addFirst(Integer.valueOf(arg1.intValue() * -1));
+		Double arg1 = pop();
+		stack.addFirst(Double.valueOf(arg1.doubleValue() * -1));
+		return null;
+	}
+	public Object visit(ASTsqrtExpr node, Object data) {
+		node.childrenAccept(this, data);
+		Double arg1 = pop();
+		stack.addFirst(Double.valueOf(Math.sqrt(arg1.doubleValue())));
 		return null;
 	}
 
@@ -76,7 +82,7 @@ public class ExpressionVisitor implements ExpressionParserVisitor {
 
 	public Object visit(ASTStatement node, Object data) {
 		node.childrenAccept(this, data);
-		Integer value = (Integer) stack.removeFirst();
+		Double value = (Double) stack.removeFirst();
 		String var = (String) stack.removeFirst();
 		symbolTable.put(var, value);
 		return null;
@@ -96,8 +102,8 @@ public class ExpressionVisitor implements ExpressionParserVisitor {
 		return null;
 	}
 
-	private Integer pop() {
-		return (Integer) stack.removeFirst();
+	private Double pop() {
+		return (Double) stack.removeFirst();
 	}
 
 }
