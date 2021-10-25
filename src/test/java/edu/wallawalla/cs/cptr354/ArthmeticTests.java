@@ -43,6 +43,12 @@ public class ArthmeticTests extends AbstractTests {
 		assertEquals("9.0" + System.lineSeparator(), result);
 	}
     @Test
+	public void orderOfOpTest() throws Exception {
+		String inputString = "var a = 1.0 + 3.0 * 2.0 / 6.0 + 2.0; console.log(a);" + System.lineSeparator();
+		String result = runInterpreter(inputString);
+		assertEquals("4.0" + System.lineSeparator(), result);
+	}
+    @Test
     public void QuadraticTest() throws Exception {
 		String inputString = "var a = 1.0; var b = 2.0; var c = 1.0; var solution = (-b + sqrt(b * b - 4.0 * a * c))/(2.0 * a); console.log(solution);" + System.lineSeparator();
 		String result = runInterpreter(inputString);
