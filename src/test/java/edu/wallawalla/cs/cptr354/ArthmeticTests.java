@@ -24,7 +24,7 @@ public class ArthmeticTests extends AbstractTests {
 		String result = runInterpreter(inputString);
 		assertEquals("-1.0" + System.lineSeparator(), result);
 	}
-        @Test
+    @Test
 	public void testMultiplicationVariable() throws Exception {
 		String inputString = "var a = 3.0 * 2.0; console.log(a);" + System.lineSeparator();
 		String result = runInterpreter(inputString);
@@ -36,15 +36,17 @@ public class ArthmeticTests extends AbstractTests {
 		String result = runInterpreter(inputString);
 		assertEquals("2.0" + System.lineSeparator(), result);
 	}
+    @Test
 	public void testSqrtVariable() throws Exception {
-		String inputString = "var a = sqrt(9.0); console.log(a);" + System.lineSeparator();
+		String inputString = "var a = sqrt(81.0); console.log(a);" + System.lineSeparator();
 		String result = runInterpreter(inputString);
-		assertEquals("3.0" + System.lineSeparator(), result);
+		assertEquals("9.0" + System.lineSeparator(), result);
 	}
+    @Test
     public void QuadraticTest() throws Exception {
-		String inputString = "var a = 1.0; var b = 1.0; var c = 1.0; b = 2.0; var solutions = (-b + sqrt(b * b - 4.0 * a * c)) / (2.0 * a); console.log(solutions);" + System.lineSeparator();
+		String inputString = "var a = 1.0; var b = 2.0; var c = 1.0; var solution = (-b + sqrt(b * b - 4.0 * a * c))/(2.0 * a); console.log(solution);" + System.lineSeparator();
 		String result = runInterpreter(inputString);
-		assertEquals("1.0" + System.lineSeparator(), result);
+		assertEquals("-1.0" + System.lineSeparator(), result);
 	}
 
 }

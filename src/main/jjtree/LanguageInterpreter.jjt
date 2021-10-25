@@ -33,7 +33,7 @@ SKIP :
 TOKEN:
 {
 
-        <DOUBLE: ((["0"-"9"])+)"."(["0"-"9"])+>
+        <DOUBLE: ("-")?((["0"-"9"])+)"."(["0"-"9"])+>
     |   <ASSIGN: "var" >
 	|	<DEBUG: "debugger">
 	|	<VARIABLE: (["a"-"z"])+>	
@@ -64,13 +64,14 @@ void VariableStatement():
 {}
 {
 	<ASSIGN> identifier() (intitaliser())*
+
 }
 
 
 void intitaliser() #Statement:
 {}
 {
-  "="expression()
+  "=" expression()
 }
 
 void debug():
@@ -105,9 +106,10 @@ void additiveExpression() :
 {
 	multiplicativeExpression()
 	(
-        <PLUS> multiplicativeExpression()#AddExpr(2)
-        | <MINUS> multiplicativeExpression()#Subtraction(2)
+        <PLUS> expression()#AddExpr(2)
+        | <MINUS> expression()#Subtraction(2)
     )*
+
 }
 
 void multiplicativeExpression() :
@@ -130,14 +132,14 @@ void unaryExpression() :
 void sqrtExpression() :
 {}
 {
-	"sqrt("paraExpression()")"#sqrtExpr(1)
-    | paraExpression()
+	"sqrt("expression()")"#sqrtExpr(1)
+    | pareExpression()
 }
 
-void paraExpression() :
+void pareExpression() :
 {}
 {
-	"("expression()")"
+	"(" expression() ")"
     | numberExpression()
 }
 
